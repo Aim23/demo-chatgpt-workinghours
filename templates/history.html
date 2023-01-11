@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Work Hour History</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Hours</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.hours|float(2) }}</td>
+                    <td>{{ row.start_time }}</td>
+                    <td>{{ row.end_time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <canvas id="workHourChart"></canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById('workHourChart').getContext('2d');
+        var workHourChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [{% for row in data %} "{{ row.start_time }}", {% endfor %}],
+                datasets: [{
+                    label: 'Work Hours',
+                    data: [{% for row in data %} {{ row.hours }}, {% endfor %}],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

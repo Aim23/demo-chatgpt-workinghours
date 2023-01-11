@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Track your Work Hours</h1>
+        <form action="{{ url_for('submit') }}" method="POST" class="form-group">
+            <label for="date">Enter the date:</label>
+            <input type="date" name="date" class="form-control" value="{{ today }}">
+            <label for="start_time">Enter the start time:</label>
+            <input type="time" name="start_time" class="form-control">
+            <label for="end_time">Enter the end time:</label>
+            <input type="time" name="end_time" class="form-control">
+            <input type="submit" value="Submit" class="btn btn-primary mt-2">
+        </form>
+    </div>
+{% endblock %}

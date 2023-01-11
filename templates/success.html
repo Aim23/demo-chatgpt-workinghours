@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card text-center mt-5">
+        <div class="card-header">
+            Work Hour Submission
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Submission Successful</h5>
+            <p class="card-text">
+                You have submitted {{ hours }} hours of work.
+            </p>
+            <p class="card-text">
+                Start Time: {{ start_time }} <br>
+                End Time: {{ end_time }}
+            </p>
+            <a href="{{ url_for('history') }}" class="btn btn-primary">View History</a>
+        </div>
+        <div class="card-footer text-muted">
+            Work Hour Tracker
+        </div>
+    </div>
+{% endblock %}
